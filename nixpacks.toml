@@ -1,8 +1,18 @@
 [phases.setup]
-nixPkgs = ["python311", "gcc", "ffmpeg", "espeak-ng", "libsndfile"]
+nixPkgs = [
+  "python311",
+  "python311Packages.pip",
+  "gcc",
+  "ffmpeg",
+  "espeak-ng",
+  "libsndfile"
+]
 
 [phases.install]
-cmds = ["pip install -r requirements.txt"]
+cmds = [
+  "python -m pip install --upgrade pip",
+  "python -m pip install -r requirements.txt"
+]
 
 [start]
 cmd = "uvicorn app:app --host 0.0.0.0 --port 3000"
